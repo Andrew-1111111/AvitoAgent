@@ -3,7 +3,7 @@ using Microsoft.Playwright;
 namespace AvitoAgent.Playwright.Extensions;
 
 /// <summary>
-/// Действия только через DOM/JS — без Playwright Mouse/Keyboard/Click,
+/// Действия только через DOM/JS - без Playwright Mouse/Keyboard/Click,
 /// которые на Windows активируют окно Chrome (Page.bringToFront / CDP Input).
 /// </summary>
 public static class HumanBehaviorExtensions
@@ -45,7 +45,7 @@ public static class HumanBehaviorExtensions
     /// React патчит value на самом элементе и обновляет свой _valueTracker при присваивании.
     /// Из-за этого прямое el.value = … проглатывается: onChange не вызывается, состояние
     /// компонента остаётся пустым (на Avito кнопка «Найти» тогда ничего не делает).
-    /// Пишем через сеттер прототипа — трекер остаётся со старым значением, и React видит ввод.
+    /// Пишем через сеттер прототипа - трекер остаётся со старым значением, и React видит ввод.
     /// </summary>
     private const string JsSetNativeValue = """
         const setNativeValue = (el, value) => {
@@ -207,7 +207,7 @@ public static class HumanBehaviorExtensions
         await page.HumanPauseRangeAsync(80, 180, cancellationToken);
     }
 
-    /// <summary>Клик по координатам через DOM — без Playwright Mouse (не активирует Chrome).</summary>
+    /// <summary>Клик по координатам через DOM - без Playwright Mouse (не активирует Chrome).</summary>
     public static async Task HumanClickAtAsync(
         this IPage page,
         float x,
@@ -267,7 +267,7 @@ public static class HumanBehaviorExtensions
             await locator.EvaluateAsync(JsTypeChar, text[i].ToString());
             if (i + 1 < text.Length)
             {
-                // Печать как у человека: ~2–6 символов/сек с джиттером.
+                // Печать как у человека: ~2-6 символов/сек с джиттером.
                 await page.HumanPauseRangeAsync(120, 320, cancellationToken);
             }
         }
@@ -279,7 +279,7 @@ public static class HumanBehaviorExtensions
         CancellationToken cancellationToken = default
     )
     {
-        // Alt+ArrowLeft и подобные — через history, без CDP Keyboard (активирует Chrome).
+        // Alt+ArrowLeft и подобные - через history, без CDP Keyboard (активирует Chrome).
         if (key.Equals("Alt+ArrowLeft", StringComparison.OrdinalIgnoreCase))
         {
             await page.EvaluateAsync("() => history.back()");

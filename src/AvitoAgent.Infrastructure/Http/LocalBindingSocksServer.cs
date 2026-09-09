@@ -130,7 +130,7 @@ public sealed class LocalBindingSocksServer : IAsyncDisposable
                     or OperationCanceledException
             )
             {
-                // Обычный обрыв туннеля — браузер закрывает соединения пачками.
+                // Обычный обрыв туннеля - браузер закрывает соединения пачками.
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ public sealed class LocalBindingSocksServer : IAsyncDisposable
         }
         catch
         {
-            // Обрыв любой из сторон — нормальный конец туннеля.
+            // Обрыв любой из сторон - нормальный конец туннеля.
         }
         finally
         {

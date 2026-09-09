@@ -12,7 +12,7 @@ internal static class AvitoNavigationState
 internal static class AvitoPageActions
 {
     /// <summary>
-    /// Единственный программный переход по URL — первое открытие Avito.
+    /// Единственный программный переход по URL - первое открытие Avito.
     /// </summary>
     public static Task OpenInitialAvitoUrlAsync(
         IPage page,

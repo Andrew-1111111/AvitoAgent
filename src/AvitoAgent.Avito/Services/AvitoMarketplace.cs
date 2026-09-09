@@ -266,7 +266,7 @@ public sealed class AvitoMarketplace(
             _options,
             cancellationToken);
 
-        // Клики по меню (сортировка) часто сбрасывают condition= из URL — восстанавливаем.
+        // Клики по меню (сортировка) часто сбрасывают condition= из URL - восстанавливаем.
         if (!AvitoUrlBuilder.HasCriteriaFilters(page.Url, criteria))
         {
             if (await AvitoHumanNavigator.ApplyCriteriaFiltersAsync(
@@ -403,7 +403,7 @@ public sealed class AvitoMarketplace(
 
                 var card = CloneWithId(rawCard, listingId);
 
-                // Уже уведомили — детали не открываем.
+                // Уже уведомили - детали не открываем.
                 // При включённом LM также пропускаем уже проанализированные.
                 // Без LM старый анализ не блокирует: нужны фото и отправка в Telegram.
                 var alreadySent = await _listingRepository.HasTelegramNotificationAsync(
@@ -434,7 +434,7 @@ public sealed class AvitoMarketplace(
                     continue;
                 }
 
-                // Перед открытием — короткая пауза (бюджет времени — на самой странице объявления).
+                // Перед открытием - короткая пауза (бюджет времени - на самой странице объявления).
                 var delayMs = CalculateDetailDelayMs();
                 AvitoLog.DetailNavigationDelay(_logger, delayMs, listingId);
                 await Task.Delay(delayMs, cancellationToken);
@@ -736,7 +736,7 @@ public sealed class AvitoMarketplace(
                     return result;
                 }
 
-                // Не открылось — один повтор, затем пропуск.
+                // Не открылось - один повтор, затем пропуск.
                 if (attempt < maxAttempts)
                 {
                     AvitoLog.ListingDetailRetry(
@@ -953,7 +953,7 @@ public sealed class AvitoMarketplace(
 
     private static bool MatchesCriteria(Listing listing, SearchCriteria criteria)
     {
-        // Соответствие строке поиска (тип/бренд/модель) — задача LM Studio, здесь не фильтруем.
+        // Соответствие строке поиска (тип/бренд/модель) - задача LM Studio, здесь не фильтруем.
         var title = listing.Title ?? string.Empty;
         var text = $"{title} {listing.Description}";
 

@@ -5,7 +5,7 @@ namespace AvitoAgent.AI.Services;
 internal static class LmStudioContextProbe
 {
     /// <summary>
-    /// Порог для предупреждения: выше — в LM Studio лучше уменьшить n_ctx при загрузке.
+    /// Порог для предупреждения: выше - в LM Studio лучше уменьшить n_ctx при загрузке.
     /// На расчёт ContextUsagePercent не влияет.
     /// </summary>
     public const int HugeContextWarnThreshold = 32_768;

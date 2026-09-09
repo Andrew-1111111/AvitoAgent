@@ -64,7 +64,7 @@ public sealed class PlaywrightBrowserDebug(ILogger logger)
                 return;
             }
 
-            // Chromium: «Failed to load resource» при route.abort (BlockTrackers) —
+            // Chromium: «Failed to load resource» при route.abort (BlockTrackers) -
             // URL ресурса в тексте нет, только page.Url → бесполезный шум.
             if (IsBlockedResourceConsoleNoise(msg.Text))
             {

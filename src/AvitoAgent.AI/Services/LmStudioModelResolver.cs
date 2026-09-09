@@ -156,7 +156,7 @@ public sealed class LmStudioModelResolver(
                 );
         }
 
-        // После load перечитываем native API — там появляется loaded_context_length.
+        // После load перечитываем native API - там появляется loaded_context_length.
         return await TryReadNativeContextInfoAsync(client, modelId, cancellationToken) ?? info;
     }
 
@@ -261,7 +261,7 @@ public sealed class LmStudioModelResolver(
 
     /// <summary>
     /// OpenAI <c>/v1/models</c> не отдаёт context_length.
-    /// Native <c>/api/v0/models</c> — <c>loaded_context_length</c> / <c>max_context_length</c>.
+    /// Native <c>/api/v0/models</c> - <c>loaded_context_length</c> / <c>max_context_length</c>.
     /// </summary>
     private async Task<ModelContextInfo?> TryReadNativeContextInfoAsync(
         HttpClient client,

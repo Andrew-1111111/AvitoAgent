@@ -18,7 +18,7 @@ internal static class LmStudioContextBudget
     private const int MinUsableContext = 2_048;
 
     /// <summary>
-    /// Qwen3.5-VL в LM Studio на полном кадре даёт сильно больше патч-оценки (часто 8k–16k на фото).
+    /// Qwen3.5-VL в LM Studio на полном кадре даёт сильно больше патч-оценки (часто 8k-16k на фото).
     /// </summary>
     private const int ImageTokenSafetyFactor = 3;
 
@@ -78,7 +78,7 @@ internal static class LmStudioContextBudget
         int contextSize
     )
     {
-        // Бюджет — доля loaded context. Фото всегда подгоняем под него (даже при OptimizeImages=false),
+        // Бюджет - доля loaded context. Фото всегда подгоняем под него (даже при OptimizeImages=false),
         // иначе Qwen-VL легко даёт exceed_context_size_error.
         var context = ResolveContextSize(contextSize, options);
         var configured =

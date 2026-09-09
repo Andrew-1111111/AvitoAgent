@@ -31,7 +31,7 @@ internal static class StorageStateImporter
             return;
         }
 
-        // Даже если каталог профиля не пуст — без cookies Avito подтягиваем backup JSON.
+        // Даже если каталог профиля не пуст - без cookies Avito подтягиваем backup JSON.
         if (await HasAvitoSessionCookiesAsync(context))
         {
             return;

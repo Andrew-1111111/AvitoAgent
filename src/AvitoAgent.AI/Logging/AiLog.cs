@@ -115,7 +115,7 @@ internal static partial class AiLog
     [LoggerMessage(
         EventId = 4011,
         Level = LogLevel.Warning,
-        Message = "LM Studio: у модели {ModelId} не удалось прочитать context_length — берём запасной бюджет {FallbackContext}"
+        Message = "LM Studio: у модели {ModelId} не удалось прочитать context_length - берём запасной бюджет {FallbackContext}"
     )]
     public static partial void ModelContextUnknown(ILogger logger, string modelId, int fallbackContext);
 
@@ -155,7 +155,7 @@ internal static partial class AiLog
     [LoggerMessage(
         EventId = 4022,
         Level = LogLevel.Information,
-        Message = "LM Studio: у {ModelId} контекст {LoadedContext} < {WantContext} — перезагружаем с нужным n_ctx"
+        Message = "LM Studio: у {ModelId} контекст {LoadedContext} < {WantContext} - перезагружаем с нужным n_ctx"
     )]
     public static partial void ModelContextTooSmall(
         ILogger logger,
@@ -167,7 +167,7 @@ internal static partial class AiLog
     [LoggerMessage(
         EventId = 4015,
         Level = LogLevel.Warning,
-        Message = "LM Studio: у {ModelId} контекст {AvailableContext} токенов — для vision/скорости Processing prompt лучше 8k–16k в настройках загрузки модели"
+        Message = "LM Studio: у {ModelId} контекст {AvailableContext} токенов - для vision/скорости Processing prompt лучше 8k-16k в настройках загрузки модели"
     )]
     public static partial void ModelContextHuge(ILogger logger, string modelId, int availableContext);
 

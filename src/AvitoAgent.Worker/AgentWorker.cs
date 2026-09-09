@@ -103,7 +103,7 @@ public sealed class AgentWorker(
             }
             catch (OperationCanceledException)
             {
-                // Stop during pause — wait for the next Start.
+                // Stop during pause - wait for the next Start.
             }
         }
     }
@@ -320,7 +320,7 @@ public sealed class AgentWorker(
                 );
                 totalFound += listings.Count;
 
-                // На случай превью-карточек без детального открытия — догоняем анализ.
+                // На случай превью-карточек без детального открытия - догоняем анализ.
                 foreach (var listing in listings)
                 {
                     cancellationToken.ThrowIfCancellationRequested();

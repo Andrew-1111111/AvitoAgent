@@ -57,7 +57,7 @@ internal static class AvitoDetailParser
             cancellationToken
         );
 
-        // Сначала полное описание — иначе бюджет галереи мог съесть время и пропустить «Читать полностью».
+        // Сначала полное описание - иначе бюджет галереи мог съесть время и пропустить «Читать полностью».
         await ExpandDescriptionAsync(page, cancellationToken);
         var description = await ReadDescriptionAsync(page);
 
@@ -131,7 +131,7 @@ internal static class AvitoDetailParser
                     && !selector.Contains("читать полностью", StringComparison.OrdinalIgnoreCase)
                 )
                 {
-                    // Широкие селекторы button/span — только если текст про раскрытие.
+                    // Широкие селекторы button/span - только если текст про раскрытие.
                     continue;
                 }
 

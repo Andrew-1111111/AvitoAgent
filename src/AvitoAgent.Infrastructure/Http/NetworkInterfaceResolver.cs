@@ -7,7 +7,7 @@ namespace AvitoAgent.Infrastructure.Http;
 public static class NetworkInterfaceResolver
 {
     /// <summary>
-    /// Разрешает IP или имя адаптера в локальный unicast-адрес. Пустая строка — null (ОС сама выбирает).
+    /// Разрешает IP или имя адаптера в локальный unicast-адрес. Пустая строка - null (ОС сама выбирает).
     /// </summary>
     public static bool TryResolve(string? value, out IPAddress? address, out string error)
     {

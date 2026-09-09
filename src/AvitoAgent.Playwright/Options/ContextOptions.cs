@@ -25,7 +25,7 @@ public sealed class ContextOptions
     public string? UserAgent { get; init; }
 
     /// <summary>
-    /// Подменять размер окна через CDP. false — как у обычного Chrome (реальный размер окна).
+    /// Подменять размер окна через CDP. false - как у обычного Chrome (реальный размер окна).
     /// </summary>
     public bool EmulateViewport { get; init; }
 

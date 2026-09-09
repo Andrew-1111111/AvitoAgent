@@ -181,7 +181,7 @@ public sealed class AvitoAuthService(
         AvitoLog.LoginStarted(_logger);
         AvitoLog.ManualLoginInstructions(_logger);
 
-        // Сначала окно браузера (рестарт из Headless), уведомление в TG — только после этого.
+        // Сначала окно браузера (рестарт из Headless), уведомление в TG - только после этого.
         await EnsureVisibleBrowserForLoginAsync(cancellationToken);
         await NotifyAuthRequiredAsync(cancellationToken);
         return false;
@@ -313,7 +313,7 @@ public sealed class AvitoAuthService(
                 return false;
             }
 
-            // SMS/login форма — точно не авторизованы, /profile не трогаем.
+            // SMS/login форма - точно не авторизованы, /profile не трогаем.
             if (await IsAnyVisibleAsync(page, SmsCodeInputSelectors, 250, cancellationToken)
                 || await IsAnyVisibleAsync(page, LoginInputSelectors, 250, cancellationToken))
             {
@@ -334,7 +334,7 @@ public sealed class AvitoAuthService(
                 return false;
             }
 
-            // Cookies auth=1/u часто остаются после выхода — сами по себе не доказательство.
+            // Cookies auth=1/u часто остаются после выхода - сами по себе не доказательство.
             if (await HasStaleAuthCookiesAsync(session.Context))
             {
                 var viaProfile = await VerifyViaProfilePageAsync(page, cancellationToken);
@@ -345,7 +345,7 @@ public sealed class AvitoAuthService(
 
                 AvitoLog.LoginStep(
                     _logger,
-                    "Cookies auth=1/u есть, но /profile не подтвердил вход — считаем неавторизованным"
+                    "Cookies auth=1/u есть, но /profile не подтвердил вход - считаем неавторизованным"
                 );
             }
 
@@ -397,7 +397,7 @@ public sealed class AvitoAuthService(
 
             await SaveFailureScreenshotAsync(page, cancellationToken);
             throw new InvalidOperationException(
-                "Доступ к Avito ограничен — пройдите капчу вручную в браузере агента."
+                "Доступ к Avito ограничен - пройдите капчу вручную в браузере агента."
             );
         }
 
@@ -483,7 +483,7 @@ public sealed class AvitoAuthService(
                 return false;
             }
 
-            // Только явные маркеры кабинета. URL /profile на странице IP-блока — ложное «да».
+            // Только явные маркеры кабинета. URL /profile на странице IP-блока - ложное «да».
             return await IsAnyVisibleOnMainPageAsync(
                 page,
                 AuthenticatedSelectors,

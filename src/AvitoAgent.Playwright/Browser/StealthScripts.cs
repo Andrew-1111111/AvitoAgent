@@ -41,7 +41,7 @@ internal static class StealthScripts
             };
 
             // Антибот сверяет Function.prototype.toString: подменённая функция без маскировки
-            // возвращает свой исходник вместо "[native code]" — явный признак бота.
+            // возвращает свой исходник вместо "[native code]" - явный признак бота.
             const nativeToString = Function.prototype.toString;
             Function.prototype.toString = function toString() {
               return this === patchedOpen

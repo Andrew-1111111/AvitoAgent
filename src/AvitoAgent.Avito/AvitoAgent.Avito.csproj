@@ -31,4 +31,8 @@
     <ProjectReference Include="..\AvitoAgent.Playwright\AvitoAgent.Playwright.csproj" />
     <ProjectReference Include="..\AvitoAgent.Shared\AvitoAgent.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvitoAgent.Tests" />
+  </ItemGroup>
 </Project>

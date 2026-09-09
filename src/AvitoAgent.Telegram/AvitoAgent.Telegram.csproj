@@ -28,4 +28,8 @@
     <ProjectReference Include="..\AvitoAgent.Core\AvitoAgent.Core.csproj" />
     <ProjectReference Include="..\AvitoAgent.Shared\AvitoAgent.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvitoAgent.Tests" />
+  </ItemGroup>
 </Project>

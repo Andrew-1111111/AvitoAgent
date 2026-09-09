@@ -44,7 +44,7 @@ internal class Program
                 }
             );
 
-            // Корень репозитория — каталог, где лежит prompts/authenticity.txt.
+            // Корень репозитория - каталог, где лежит prompts/authenticity.txt.
             var projectRoot = ResolveProjectRoot(builder.Environment.ContentRootPath);
             var pathOptions =
                 builder.Configuration.GetSection(PathOptions.SectionName).Get<PathOptions>()
@@ -68,7 +68,7 @@ internal class Program
 
             if (debugOptions.BrowserLog)
             {
-                // BrowserDebug только в logs/debug-*.log — не засоряет консоль и основной лог.
+                // BrowserDebug только в logs/debug-*.log - не засоряет консоль и основной лог.
                 loggerConfiguration = loggerConfiguration
                     .MinimumLevel.Override(
                         PlaywrightBrowserDebug.SourceContext,
@@ -127,7 +127,7 @@ internal class Program
                 options.ShutdownTimeout = TimeSpan.FromSeconds(20)
             );
 
-            // Пути к data/, logs/, prompts/ — один экземпляр на всё приложение.
+            // Пути к data/, logs/, prompts/ - один экземпляр на всё приложение.
             builder.Services.AddSingleton(paths);
 
             // Собираем Host: создаются зависимости, читается appsettings, поднимаются валидаторы опций.
@@ -214,7 +214,7 @@ internal class Program
                 );
             }
 
-            // При включённом LM Studio заранее читаем промпт подлинности (ошибка файла — сразу при старте).
+            // При включённом LM Studio заранее читаем промпт подлинности (ошибка файла - сразу при старте).
             var lmStudio = host.Services.GetRequiredService<IOptions<LmStudioOptions>>().Value;
             if (lmStudio.Enabled)
             {
@@ -229,11 +229,11 @@ internal class Program
         }
         catch (Exception ex) when (ConfigurationErrors.IsCancellation(ex))
         {
-            // Ctrl+C или закрытие браузера во время старта — не ошибка конфигурации.
+            // Ctrl+C или закрытие браузера во время старта - не ошибка конфигурации.
         }
         catch (Exception ex)
         {
-            // Ошибки валидации опций — уже выведены в человекочитаемом виде.
+            // Ошибки валидации опций - уже выведены в человекочитаемом виде.
             if (ConfigurationErrors.TryWrite(ex))
             {
                 PromptExit();
@@ -250,7 +250,7 @@ internal class Program
                 return;
             }
 
-            // Ожидаемые сбои конфигурации/окружения — без полного стека в консоли.
+            // Ожидаемые сбои конфигурации/окружения - без полного стека в консоли.
             if (ex is InvalidOperationException)
             {
                 Log.Fatal("Не удалось запустить AvitoAgent: {Message}", ex.Message);

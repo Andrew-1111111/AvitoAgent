@@ -8,7 +8,7 @@ internal static class TrackerBlocklist
 {
     private static readonly string[] HostSuffixes =
     [
-        // Google ads / analytics (не google.com целиком — там может быть reCAPTCHA)
+        // Google ads / analytics (не google.com целиком - там может быть reCAPTCHA)
         "google-analytics.com",
         "analytics.google.com",
         "googletagmanager.com",
@@ -101,7 +101,7 @@ internal static class TrackerBlocklist
     }
 
     // Первопартийные хосты не режем: их телеметрию антибот Avito (Qrator) считает
-    // признаком живого браузера, а обрыв — признаком автоматизации.
+    // признаком живого браузера, а обрыв - признаком автоматизации.
     private static bool IsAvitoContentHost(string host) =>
         host.Equals("avito.ru", StringComparison.OrdinalIgnoreCase)
         || host.EndsWith(".avito.ru", StringComparison.OrdinalIgnoreCase)

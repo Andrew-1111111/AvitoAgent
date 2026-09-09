@@ -209,7 +209,7 @@ public sealed class BrowserLifetimeService(
         }
         catch (OperationCanceledException)
         {
-            // SOCKS/Telegram не успели за таймаут — не блокируем выход.
+            // SOCKS/Telegram не успели за таймаут - не блокируем выход.
         }
         catch (Exception ex)
         {

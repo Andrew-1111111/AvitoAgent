@@ -45,14 +45,14 @@ internal static partial class TelegramLog
     [LoggerMessage(
         EventId = 5012,
         Level = LogLevel.Warning,
-        Message = "Telegram: фото для {ListingId} не ушли ({Reason}) — отправляем текст без картинок"
+        Message = "Telegram: фото для {ListingId} не ушли ({Reason}) - отправляем текст без картинок"
     )]
     public static partial void PhotosFailedContinueText(ILogger logger, string listingId, string reason);
 
     [LoggerMessage(
         EventId = 5007,
         Level = LogLevel.Warning,
-        Message = "Telegram: у {ListingId} нет скачанных фото (есть {UrlCount} URL) — отправка без картинок"
+        Message = "Telegram: у {ListingId} нет скачанных фото (есть {UrlCount} URL) - отправка без картинок"
     )]
     public static partial void PhotosMissing(ILogger logger, string listingId, int urlCount);
 

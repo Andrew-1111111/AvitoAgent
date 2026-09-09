@@ -23,7 +23,7 @@ public sealed record SearchCriteria
     public string SellerType { get; init; } = "Все";
 
     /// <summary>
-    /// UTC: брать объявления не старше этого момента. null — без фильтра по дате.
+    /// UTC: брать объявления не старше этого момента. null - без фильтра по дате.
     /// </summary>
     public DateTime? PublishedAfterUtc { get; init; }
 }

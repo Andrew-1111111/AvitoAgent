@@ -166,7 +166,7 @@ public sealed partial class TelegramBotService(
             ),
             "исключения" => Ask(
                 ControlPrompt.Excluded,
-                "Пришлите слова-исключения через запятую. «-» или «—» — очистить."
+                "Пришлите слова-исключения через запятую. «-» - очистить."
             ),
             "регион" => Ask(
                 ControlPrompt.Location,
@@ -174,7 +174,7 @@ public sealed partial class TelegramBotService(
             ),
             "цена" => Ask(
                 ControlPrompt.Price,
-                "Пришлите цену: 1000-50000, от 1000, до 50000. 0 — без границ."
+                "Пришлите цену: 1000-50000, от 1000, до 50000. 0 - без границ."
             ),
             "сортировка" => ("Выберите сортировку:", TelegramControlUi.SortKeyboard()),
             "доставка" => ("Фильтр доставки:", TelegramControlUi.DeliveryKeyboard()),
@@ -444,7 +444,7 @@ public sealed partial class TelegramBotService(
         return true;
     }
 
-    private static bool TryParsePrice(string text, out int min, out int max, out string error)
+    internal static bool TryParsePrice(string text, out int min, out int max, out string error)
     {
         min = 0;
         max = 0;
@@ -457,8 +457,8 @@ public sealed partial class TelegramBotService(
 
         raw = raw.Replace("от", " ", StringComparison.Ordinal)
             .Replace("до", " ", StringComparison.Ordinal)
-            .Replace("—", "-")
-            .Replace("–", "-");
+            .Replace("\u2014", "-")
+            .Replace("\u2013", "-");
 
         var numbers = new List<int>();
         foreach (
@@ -512,7 +512,7 @@ public sealed partial class TelegramBotService(
         return true;
     }
 
-    private static bool TryParseIntervalMinutes(string text, out int minutes, out string error)
+    internal static bool TryParseIntervalMinutes(string text, out int minutes, out string error)
     {
         minutes = 0;
         error = string.Empty;
@@ -552,7 +552,7 @@ public sealed partial class TelegramBotService(
         return true;
     }
 
-    private static bool TryParseSleepHours(
+    internal static bool TryParseSleepHours(
         string text,
         out int? fromHour,
         out int? toHour,
@@ -579,7 +579,7 @@ public sealed partial class TelegramBotService(
             || !TryParseHour(parts.Groups[2].Value, out var to)
         )
         {
-            error = "Укажите два часа 0–23: 23-7 или 1 8. «-» — выключить сон.";
+            error = "Укажите два часа 0-23: 23-7 или 1 8. «-» - выключить сон.";
             return false;
         }
 
@@ -605,17 +605,17 @@ public sealed partial class TelegramBotService(
         return hour is >= 0 and <= 23;
     }
 
-    private static string FormatSleepSaved(int? fromHour, int? toHour) =>
+    internal static string FormatSleepSaved(int? fromHour, int? toHour) =>
         SleepSchedule.IsConfigured(fromHour, toHour)
-            ? $"Сон сохранён: {fromHour!.Value:00}:00–{toHour!.Value:00}:00"
+            ? $"Сон сохранён: {fromHour!.Value:00}:00-{toHour!.Value:00}:00"
             : "Сон выключен";
 
-    private static string FormatSleep(ParseSettings settings) =>
+    internal static string FormatSleep(ParseSettings settings) =>
         SleepSchedule.IsConfigured(settings.SleepFromHour, settings.SleepToHour)
-            ? $"{settings.SleepFromHour!.Value:00}:00–{settings.SleepToHour!.Value:00}:00"
+            ? $"{settings.SleepFromHour!.Value:00}:00-{settings.SleepToHour!.Value:00}:00"
             : "выкл";
 
-    private static string[] SplitPhrases(string text) =>
+    internal static string[] SplitPhrases(string text) =>
         [
             .. text.Split(
                     [',', ';', '\r', '\n'],
@@ -625,9 +625,9 @@ public sealed partial class TelegramBotService(
         ];
 
     /// <summary>
-    /// «-», «–», «—», «нет», «0» — очистить список (исключения и т.п.).
+    /// «-», «нет», «0» - очистить список (исключения и т.п.).
     /// </summary>
-    private static bool IsClearListToken(string? text)
+    internal static bool IsClearListToken(string? text)
     {
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -637,14 +637,14 @@ public sealed partial class TelegramBotService(
         var raw = text.Trim()
             .ToLowerInvariant()
             .Replace('ё', 'е')
-            .Replace('—', '-') // em dash
-            .Replace('–', '-') // en dash
-            .Replace('\u2212', '-'); // minus sign
+            .Replace('\u2014', '-')
+            .Replace('\u2013', '-')
+            .Replace('\u2212', '-');
 
         return raw is "-" or "нет" or "0";
     }
 
-    [GeneratedRegex(@"^\s*(\d{1,2})\s*(?:[-–—:–]|\s+)\s*(\d{1,2})\s*$")]
+    [GeneratedRegex(@"^\s*(\d{1,2})\s*(?:[-\u2013\u2014:]|\s+)\s*(\d{1,2})\s*$")]
     private static partial Regex SleepHoursRegex();
 
     private static bool IsMenuButton(string text) =>
@@ -708,9 +708,9 @@ public sealed partial class TelegramBotService(
     }
 
     private string FormatLocations(IReadOnlyList<string> slugs) =>
-        slugs.Count == 0 ? "—" : string.Join(", ", slugs.Select(_locations.DisplayName));
+        slugs.Count == 0 ? "-" : string.Join(", ", slugs.Select(_locations.DisplayName));
 
-    private static string FormatPrice(ParseSettings settings)
+    internal static string FormatPrice(ParseSettings settings)
     {
         if (settings.MinPrice <= 0 && settings.MaxPrice <= 0)
         {
@@ -719,14 +719,14 @@ public sealed partial class TelegramBotService(
 
         if (settings.MinPrice > 0 && settings.MaxPrice > 0)
         {
-            return $"{settings.MinPrice}–{settings.MaxPrice} ₽";
+            return $"{settings.MinPrice}-{settings.MaxPrice} ₽";
         }
 
         return settings.MinPrice > 0 ? $"от {settings.MinPrice} ₽" : $"до {settings.MaxPrice} ₽";
     }
 
-    private static string JoinOrDash(IReadOnlyList<string> values) =>
-        values.Count == 0 ? "—" : string.Join(", ", values);
+    internal static string JoinOrDash(IReadOnlyList<string> values) =>
+        values.Count == 0 ? "-" : string.Join(", ", values);
 
     private bool IsAllowedChat(long? chatId)
     {
@@ -745,7 +745,7 @@ public sealed partial class TelegramBotService(
         CancellationToken cancellationToken
     )
     {
-        // Старые текстовые команды пропускаем, но callback «Войти» обрабатываем —
+        // Старые текстовые команды пропускаем, но callback «Войти» обрабатываем -
         // иначе нажатие до старта бота теряется, а кнопка в Telegram «висит».
         var pending = await GetUpdatesAsync(
             client,

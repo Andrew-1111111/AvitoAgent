@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <RootNamespace>AvitoAgent.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.11" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvitoAgent.Shared\AvitoAgent.Shared.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Core\AvitoAgent.Core.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Avito\AvitoAgent.Avito.csproj" />
+    <ProjectReference Include="..\AvitoAgent.AI\AvitoAgent.AI.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Infrastructure\AvitoAgent.Infrastructure.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Playwright\AvitoAgent.Playwright.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Telegram\AvitoAgent.Telegram.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Worker\AvitoAgent.Worker.csproj" />
+    <ProjectReference Include="..\AvitoAgent.Storage\AvitoAgent.Storage.csproj" />
+    <ProjectReference Include="..\AvitoAgent.App\AvitoAgent.App.csproj" />
+  </ItemGroup>
+</Project>

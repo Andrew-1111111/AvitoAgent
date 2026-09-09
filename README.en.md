@@ -37,7 +37,7 @@ The `prompts/` folder must sit next to the published app or somewhere above the 
 
 ## Build
 
-**Framework-dependent** — the machine needs the .NET 10 Runtime:
+**Framework-dependent** - the machine needs the .NET 10 Runtime:
 
 ```powershell
 dotnet publish src\AvitoAgent.App\AvitoAgent.App.csproj `
@@ -46,7 +46,7 @@ dotnet publish src\AvitoAgent.App\AvitoAgent.App.csproj `
 Copy-Item -Recurse prompts .\publish\framework-dependent\prompts
 ```
 
-**Self-contained** — the runtime is bundled; Chrome is still required:
+**Self-contained** - the runtime is bundled; Chrome is still required:
 
 ```powershell
 dotnet publish src\AvitoAgent.App\AvitoAgent.App.csproj `
@@ -57,9 +57,17 @@ Copy-Item -Recurse prompts .\publish\self-contained\prompts
 
 Run `AvitoAgent.App.exe` from the publish folder.
 
+## Tests
+
+```powershell
+dotnet test src\AvitoAgent.Tests\AvitoAgent.Tests.csproj -c Release
+```
+
+Unit coverage (no browser): Avito filters and URLs, geo catalog, date/image parsing, sleep schedule, LM Studio helpers/errors/budget, options validators, Telegram parse/format/UI, SQLite repository, tracker blocklist, network errors, `ParseSession`.
+
 ## GitHub Actions
 
-`.github/workflows/build.yml` builds both `win-x64` variants on every push and pull request and uploads artifacts:
+`.github/workflows/build.yml` runs unit tests first, then builds both `win-x64` variants on every push and pull request and uploads artifacts:
 
 | Artifact | Contents |
 | --- | --- |
@@ -78,6 +86,7 @@ src/AvitoAgent.Playwright     browser, automation masking, networking
 src/AvitoAgent.Telegram       notifications and control keyboard
 src/AvitoAgent.AI             LM Studio client
 src/AvitoAgent.Storage        SQLite store
+src/AvitoAgent.Tests          unit tests (xUnit)
 prompts/authenticity.txt      listing analysis prompt
 ```
 
@@ -89,12 +98,13 @@ Initial values come from the `Worker` and `Avito:Filters` sections in `appsettin
 
 ## Tech stack
 
-- **C# / .NET 10** — Generic Host, DI, Options, `IHttpClientFactory`
-- **Microsoft.Playwright** — driving the installed Google Chrome browser
-- **Telegram Bot API** — notifications and the control keyboard over HTTP
-- **LM Studio** — local OpenAI-compatible API for listing analysis
-- **SQLite** (`Microsoft.Data.Sqlite`) — already seen listings
-- **SkiaSharp** — image preparation for the model
-- **Serilog** — console and file logging
-- **Polly** (`Microsoft.Extensions.Http.Resilience`) — HTTP retries
-- **GitHub Actions** — win-x64 framework-dependent and self-contained builds
+- **C# / .NET 10** - Generic Host, DI, Options, `IHttpClientFactory`
+- **Microsoft.Playwright** - driving the installed Google Chrome browser
+- **Telegram Bot API** - notifications and the control keyboard over HTTP
+- **LM Studio** - local OpenAI-compatible API for listing analysis
+- **SQLite** (`Microsoft.Data.Sqlite`) - already seen listings
+- **SkiaSharp** - image preparation for the model
+- **Serilog** - console and file logging
+- **Polly** (`Microsoft.Extensions.Http.Resilience`) - HTTP retries
+- **GitHub Actions** - unit tests, win-x64 framework-dependent and self-contained builds
+- **xUnit** - unit tests in `src/AvitoAgent.Tests`

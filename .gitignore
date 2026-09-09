@@ -12,7 +12,7 @@
 /logs/
 /debug/
 
-# Secrets — используйте appsettings.example.json
+# Secrets - используйте appsettings.example.json
 src/AvitoAgent.App/appsettings.json
 
 # OS

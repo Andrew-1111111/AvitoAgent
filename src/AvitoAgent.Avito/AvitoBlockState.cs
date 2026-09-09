@@ -49,4 +49,13 @@ internal static class AvitoBlockState
             return Blocks.Count;
         }
     }
+
+    /// <summary>Сброс счётчика для unit-тестов.</summary>
+    internal static void ResetForTests()
+    {
+        lock (Gate)
+        {
+            Blocks.Clear();
+        }
+    }
 }

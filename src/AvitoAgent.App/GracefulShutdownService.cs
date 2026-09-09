@@ -8,7 +8,7 @@ namespace AvitoAgent.App;
 
 /// <summary>
 /// Перехватывает закрытие консоли / выход из системы и запускает тот же shutdown, что Ctrl+C.
-/// Жёсткий Kill (taskkill /F) ОС убивает процесс мгновенно — код выполнить нельзя;
+/// Жёсткий Kill (taskkill /F) ОС убивает процесс мгновенно - код выполнить нельзя;
 /// для End Task / закрытия окна консоли Windows даёт несколько секунд.
 /// </summary>
 public sealed class GracefulShutdownService(
@@ -35,7 +35,7 @@ public sealed class GracefulShutdownService(
             ((ManualResetEventSlim)state!).Set();
         }, _hostStopped);
 
-        // Ctrl+C / Ctrl+Break: не даём runtime сразу убить процесс — ждём StopAsync хоста.
+        // Ctrl+C / Ctrl+Break: не даём runtime сразу убить процесс - ждём StopAsync хоста.
         Console.CancelKeyPress += OnCancelKeyPress;
 
         // Последний шанс при выходе домена (не срабатывает на TerminateProcess).
@@ -47,7 +47,7 @@ public sealed class GracefulShutdownService(
             if (!NativeMethods.SetConsoleCtrlHandler(_consoleHandler, add: true))
             {
                 _logger.LogWarning(
-                    "Не удалось установить ConsoleCtrlHandler — закрытие окна консоли может не сохранить сессию."
+                    "Не удалось установить ConsoleCtrlHandler - закрытие окна консоли может не сохранить сессию."
                 );
             }
         }

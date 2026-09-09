@@ -93,7 +93,7 @@ internal static partial class AvitoImageUrl
             return true;
         }
 
-        // 640×480 — обычный кадр галереи, не превью. Превью: 140/208/240 и /preview.
+        // 640×480 - обычный кадр галереи, не превью. Превью: 140/208/240 и /preview.
         var width = WidthHint(url);
         return width is > 0 and < 400;
     }
@@ -135,7 +135,7 @@ internal static partial class AvitoImageUrl
             return 0;
         }
 
-        // Подписанный URL без WxH — качество неизвестно из пути; не занижаем против явных 1280x960.
+        // Подписанный URL без WxH - качество неизвестно из пути; не занижаем против явных 1280x960.
         if (url.Contains("/image/1/", StringComparison.OrdinalIgnoreCase))
         {
             return 900;

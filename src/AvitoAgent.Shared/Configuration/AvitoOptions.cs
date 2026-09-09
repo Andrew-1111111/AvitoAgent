@@ -49,7 +49,7 @@ public sealed class AvitoOptions
     public int MaxCardsPerSearchPage { get; set; } = 50;
 
     /// <summary>
-    /// Сколько объявлений открывать с одной выдачи. 0 — все собранные карточки.
+    /// Сколько объявлений открывать с одной выдачи. 0 - все собранные карточки.
     /// </summary>
     public int MaxDetailsPerSearch { get; set; }
 
@@ -58,7 +58,7 @@ public sealed class AvitoOptions
     public bool StopOnBlock { get; set; } = true;
 
     /// <summary>
-    /// Сколько ждать ручного прохождения капчи (мс). 0 — ждать бесконечно.
+    /// Сколько ждать ручного прохождения капчи (мс). 0 - ждать бесконечно.
     /// </summary>
     public int ManualCaptchaWaitMs { get; set; } = 0;
 
@@ -81,7 +81,7 @@ public sealed class AvitoOptions
     public int DetailGalleryInitialDelayJitterMs { get; set; } = 600;
 
     /// <summary>
-    /// Лимит фото при просмотре галереи. 0 — без лимита (до 50).
+    /// Лимит фото при просмотре галереи. 0 - без лимита (до 50).
     /// </summary>
     public int MaxGalleryPhotos { get; set; }
 

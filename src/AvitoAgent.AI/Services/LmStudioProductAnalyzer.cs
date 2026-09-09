@@ -216,7 +216,7 @@ public sealed class LmStudioProductAnalyzer(
         var errorBody = await response.Content.ReadAsStringAsync(cancellationToken);
         var status = (int)response.StatusCode;
 
-        // Schema / grammar конфликт (часто из‑за <think> + json_schema) — без schema + think-prefill.
+        // Schema / grammar конфликт (часто из-за <think> + json_schema) - без schema + think-prefill.
         if (
             status == 400
             && request.ResponseFormat is not null
@@ -283,7 +283,7 @@ public sealed class LmStudioProductAnalyzer(
 
         parts.AddRange(imageParts);
 
-        // Инструкция после фото — vision-модели чаще слушаются хвост запроса.
+        // Инструкция после фото - vision-модели чаще слушаются хвост запроса.
         parts.Add(
             new TextContentPart
             {
@@ -319,7 +319,7 @@ public sealed class LmStudioProductAnalyzer(
 
         return QwenThinking.PrefixUserText(
             "Данные объявления. Реши, соответствует ли объявление searchCriteria "
-                + "(тип товара, бренд/модель, исключения) — это твоя задача; ответь JSON:\n"
+                + "(тип товара, бренд/модель, исключения) - это твоя задача; ответь JSON:\n"
                 + JsonSerializer.Serialize(payload, JsonOptions)
         );
     }

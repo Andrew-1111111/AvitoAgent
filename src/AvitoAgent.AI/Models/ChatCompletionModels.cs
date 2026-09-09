@@ -19,7 +19,7 @@ internal sealed class ChatCompletionRequest
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? MaxTokens { get; init; }
 
-    /// <summary>LM Studio / Qwen: выключить thinking (несколько имён — разные версии API).</summary>
+    /// <summary>LM Studio / Qwen: выключить thinking (несколько имён - разные версии API).</summary>
     [JsonPropertyName("enable_thinking")]
     public bool EnableThinking { get; init; }
 
@@ -174,7 +174,7 @@ internal sealed class ChatResponseMessage
     public string? Reasoning { get; init; }
 
     /// <summary>
-    /// Только content. reasoning_content — thinking; подставлять его нельзя (получим план вместо JSON).
+    /// Только content. reasoning_content - thinking; подставлять его нельзя (получим план вместо JSON).
     /// </summary>
     public string? ReadAnswerText() => ReadElement(Content);
 

@@ -157,7 +157,7 @@ internal static partial class AvitoHumanNavigator
             return null;
         }
 
-        // Сначала та же вкладка через location.assign — новая вкладка активирует Chrome.
+        // Сначала та же вкладка через location.assign - новая вкладка активирует Chrome.
         if (await TryOpenListingSameTabAsync(page, link, listingId, timeoutMs, cancellationToken))
         {
             return page;
@@ -214,7 +214,7 @@ internal static partial class AvitoHumanNavigator
 
     /// <summary>
     /// Открывает объявление в текущей вкладке (без NewPage / target=_blank).
-    /// Важно: не использовать location.assign через Evaluate — Playwright ждёт возврат JS,
+    /// Важно: не использовать location.assign через Evaluate - Playwright ждёт возврат JS,
     /// контекст уничтожается навигацией → Timeout ~30 с («страница не ответила вовремя»).
     /// </summary>
     private static async Task<bool> TryOpenListingSameTabAsync(
@@ -260,7 +260,7 @@ internal static partial class AvitoHumanNavigator
             }
             catch (PlaywrightException)
             {
-                // Уже могли прийти на объявление — проверяем ниже.
+                // Уже могли прийти на объявление - проверяем ниже.
             }
 
             await page.HumanPauseRangeAsync(350, 800, cancellationToken);
@@ -307,7 +307,7 @@ internal static partial class AvitoHumanNavigator
     }
 
     /// <summary>
-    /// Если объявление открылось во вкладке — переносим URL в исходную и закрываем лишнюю
+    /// Если объявление открылось во вкладке - переносим URL в исходную и закрываем лишнюю
     /// (новая вкладка забирает фокус ОС).
     /// </summary>
     private static async Task<IPage?> PreferSameTabListingAsync(
@@ -677,7 +677,7 @@ internal static partial class AvitoHumanNavigator
 
         if (searchPage is not null && await IsOnSearchResultsPageAsync(searchPage))
         {
-            // Достаточно той же выдачи по запросу. Не пересобирать URL — Avito сам дописывает context=.
+            // Достаточно той же выдачи по запросу. Не пересобирать URL - Avito сам дописывает context=.
             if (
                 string.IsNullOrWhiteSpace(query)
                 || AvitoUrlBuilder.UrlMatchesSearchQuery(searchPage.Url, query)
@@ -883,7 +883,7 @@ internal static partial class AvitoHumanNavigator
             return;
         }
 
-        // Регион без строки q — при смене локации / отсутствии поля поиска.
+        // Регион без строки q - при смене локации / отсутствии поля поиска.
         if (
             !AvitoUrlBuilder.SearchLocationMatches(page.Url, locationUrl)
             || await FindVisibleLocatorAsync(page, SearchInputSelectors, cancellationToken) is null
@@ -980,7 +980,7 @@ internal static partial class AvitoHumanNavigator
         }
         catch (PlaywrightException)
         {
-            // SPA может не давать full load — дальше ждём карточки.
+            // SPA может не давать full load - дальше ждём карточки.
         }
 
         await page.HumanPauseRangeAsync(400, 800, cancellationToken);
@@ -988,7 +988,7 @@ internal static partial class AvitoHumanNavigator
     }
 
     /// <summary>
-    /// Доставка, продавец и сортировка — кликами по меню на выдаче.
+    /// Доставка, продавец и сортировка - кликами по меню на выдаче.
     /// </summary>
     public static async Task ApplyListingFiltersViaUiAsync(
         IPage page,
@@ -1279,7 +1279,7 @@ internal static partial class AvitoHumanNavigator
         {
             if (!AvitoUrlBuilder.TryMergeCriteriaFilters(page.Url, criteria, out var targetUrl))
             {
-                // Фильтры уже в URL (path мог смениться на категорию — это нормально).
+                // Фильтры уже в URL (path мог смениться на категорию - это нормально).
                 return AvitoUrlBuilder.HasCriteriaFilters(page.Url, criteria);
             }
 
@@ -1447,7 +1447,7 @@ internal static partial class AvitoHumanNavigator
             return true;
         }
 
-        // Повтор только человеческой мышью — без JS-кликов по меню.
+        // Повтор только человеческой мышью - без JS-кликов по меню.
         await page.HumanPauseRangeAsync(400, 800, cancellationToken);
         if (
             await TryOpenSortMenuAsync(page, timeout, cancellationToken)
@@ -1734,7 +1734,7 @@ internal static partial class AvitoHumanNavigator
                     }
 
                     var y = (float)(box.Y + box.Height * 0.5);
-                    // Только пункты выше или на уровне цели — «сканируем» сверху вниз.
+                    // Только пункты выше или на уровне цели - «сканируем» сверху вниз.
                     if (y > targetY + 8)
                     {
                         continue;
@@ -1757,7 +1757,7 @@ internal static partial class AvitoHumanNavigator
 
             waypoints = [.. waypoints.OrderBy(static p => p.Y)];
 
-            // Не больше 6 промежуточных остановок — иначе слишком долго.
+            // Не больше 6 промежуточных остановок - иначе слишком долго.
             if (waypoints.Count > 6)
             {
                 var step = (waypoints.Count - 1) / 5.0;
@@ -2063,7 +2063,7 @@ internal static partial class AvitoHumanNavigator
         }
         catch (PlaywrightException)
         {
-            // Кнопки «Показать» может не быть — фильтр применился сразу.
+            // Кнопки «Показать» может не быть - фильтр применился сразу.
         }
     }
 
@@ -2256,7 +2256,7 @@ internal static partial class AvitoHumanNavigator
             return true;
         }
 
-        // URL поиска с ?q= и полем поиска — тоже выдача (карточки ещё грузятся).
+        // URL поиска с ?q= и полем поиска - тоже выдача (карточки ещё грузятся).
         try
         {
             var url = page.Url;

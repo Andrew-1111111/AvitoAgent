@@ -11,7 +11,7 @@ public sealed class TelegramOptions
 
     /// <summary>
     /// Управление поиском из Telegram (клавиатура, Старт/Стоп, фильтры).
-    /// false — только уведомления, параметры берутся из appsettings.
+    /// false - только уведомления, параметры берутся из appsettings.
     /// </summary>
     public bool ControlEnabled { get; set; } = true;
 
@@ -27,7 +27,7 @@ public sealed class TelegramOptions
     public Socks5Options Socks5 { get; set; } = new();
 
     /// <summary>
-    /// IP или имя адаптера для исходящих запросов Telegram API. Пусто — по умолчанию ОС.
+    /// IP или имя адаптера для исходящих запросов Telegram API. Пусто - по умолчанию ОС.
     /// </summary>
     public string NetworkInterface { get; set; } = string.Empty;
 
@@ -43,7 +43,7 @@ public sealed class TelegramOptions
         "Проверь подлинность товара по фотографиям";
 
     /// <summary>
-    /// Сколько фото прикреплять к уведомлению (1–10). Telegram album: максимум 10.
+    /// Сколько фото прикреплять к уведомлению (1-10). Telegram album: максимум 10.
     /// </summary>
     public int MaxPhotos { get; set; } = 5;
 }

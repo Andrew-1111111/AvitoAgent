@@ -56,14 +56,14 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3005,
         Level = LogLevel.Warning,
-        Message = "Объявление {ListingId}: не удалось открыть карточку — {Reason}"
+        Message = "Объявление {ListingId}: не удалось открыть карточку - {Reason}"
     )]
     public static partial void DetailParseFailed(ILogger logger, string listingId, string reason);
 
     [LoggerMessage(
         EventId = 3093,
         Level = LogLevel.Information,
-        Message = "Объявление {ListingId}: загрузка прервана — поиск остановлен"
+        Message = "Объявление {ListingId}: загрузка прервана - поиск остановлен"
     )]
     public static partial void DetailParseCancelled(ILogger logger, string listingId);
 
@@ -93,14 +93,14 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3071,
         Level = LogLevel.Warning,
-        Message = "{Action} — {Reason}"
+        Message = "{Action} - {Reason}"
     )]
     public static partial void ActionFailed(ILogger logger, string action, string reason);
 
     [LoggerMessage(
         EventId = 3094,
         Level = LogLevel.Debug,
-        Message = "Возврат к выдаче не выполнен — поиск остановлен"
+        Message = "Возврат к выдаче не выполнен - поиск остановлен"
     )]
     public static partial void ActionCancelled(ILogger logger);
 
@@ -152,21 +152,21 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3015,
         Level = LogLevel.Information,
-        Message = "Avito auth: текущий URL — {Url}"
+        Message = "Avito auth: текущий URL - {Url}"
     )]
     public static partial void LoginCurrentUrl(ILogger logger, string url);
 
     [LoggerMessage(
         EventId = 3016,
         Level = LogLevel.Information,
-        Message = "Avito auth: войдите вручную в открытом браузере. Ожидание отключено — после входа агент продолжит сам."
+        Message = "Avito auth: войдите вручную в открытом браузере. Ожидание отключено - после входа агент продолжит сам."
     )]
     public static partial void ManualLoginInstructions(ILogger logger);
 
     [LoggerMessage(
         EventId = 3062,
         Level = LogLevel.Warning,
-        Message = "Avito: поиск пропущен — нет авторизации. Войдите в браузере агента."
+        Message = "Avito: поиск пропущен - нет авторизации. Войдите в браузере агента."
     )]
     public static partial void SearchSkippedNotAuthenticated(ILogger logger);
 
@@ -180,7 +180,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3018,
         Level = LogLevel.Debug,
-        Message = "Avito: доступ ограничён или требуется капча — {Url}"
+        Message = "Avito: доступ ограничён или требуется капча - {Url}"
     )]
     public static partial void AccessRestricted(ILogger logger, string url);
 
@@ -194,7 +194,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3020,
         Level = LogLevel.Debug,
-        Message = "Avito: страница поиска — title: {Title}, url: {Url}"
+        Message = "Avito: страница поиска - title: {Title}, url: {Url}"
     )]
     public static partial void SearchPageState(ILogger logger, string title, string url);
 
@@ -208,14 +208,14 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3091,
         Level = LogLevel.Warning,
-        Message = "Avito: авторизация при старте не удалась — {Reason}. Приложение продолжит работу; войдите через Telegram или вручную."
+        Message = "Avito: авторизация при старте не удалась - {Reason}. Приложение продолжит работу; войдите через Telegram или вручную."
     )]
     public static partial void AuthStartupFailed(ILogger logger, string reason);
 
     [LoggerMessage(
         EventId = 3092,
         Level = LogLevel.Warning,
-        Message = "Avito: для входа нужен видимый браузер — Headless будет выключен, агент перезапускается"
+        Message = "Avito: для входа нужен видимый браузер - Headless будет выключен, агент перезапускается"
     )]
     public static partial void RestartingForVisibleLogin(ILogger logger);
 
@@ -271,7 +271,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3027,
         Level = LogLevel.Warning,
-        Message = "Avito: нужна капча — пройдите её вручную в браузере агента ({Url})"
+        Message = "Avito: нужна капча - пройдите её вручную в браузере агента ({Url})"
     )]
     public static partial void ManualCaptchaRequired(ILogger logger, string url);
 
@@ -313,7 +313,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3130,
         Level = LogLevel.Warning,
-        Message = "Avito: капча пройдена, но блокировка вернулась — ждём дальше "
+        Message = "Avito: капча пройдена, но блокировка вернулась - ждём дальше "
             + "(нужен другой IP: мобильный/резидентный прокси)"
     )]
     public static partial void BlockPersistsAfterCaptcha(ILogger logger);
@@ -363,7 +363,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3033,
         Level = LogLevel.Information,
-        Message = "Avito: лимит детальных переходов ({Limit}) — остальные берём с карточки поиска"
+        Message = "Avito: лимит детальных переходов ({Limit}) - остальные берём с карточки поиска"
     )]
     public static partial void SearchCardsUsingPreview(ILogger logger, int limit);
 
@@ -384,7 +384,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3036,
         Level = LogLevel.Information,
-        Message = "Avito: галерея — собрано {Count} из {Total} фото"
+        Message = "Avito: галерея - собрано {Count} из {Total} фото"
     )]
     public static partial void GalleryPhotosCollected(ILogger logger, int count, int total);
 
@@ -405,7 +405,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3039,
         Level = LogLevel.Information,
-        Message = "Avito: стартовый URL — {Url}"
+        Message = "Avito: стартовый URL - {Url}"
     )]
     public static partial void OpenedStartUrl(ILogger logger, string url);
 
@@ -426,7 +426,7 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3089,
         Level = LogLevel.Warning,
-        Message = "Объявление {ListingId}: повторно не открылось — пропускаем"
+        Message = "Объявление {ListingId}: повторно не открылось - пропускаем"
     )]
     public static partial void ListingDetailSkippedAfterRetry(ILogger logger, string listingId);
 
@@ -447,21 +447,21 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3047,
         Level = LogLevel.Information,
-        Message = "Avito: объявление {ListingId} уже обработано — детали не открываем"
+        Message = "Avito: объявление {ListingId} уже обработано - детали не открываем"
     )]
     public static partial void ListingAlreadyKnown(ILogger logger, string listingId);
 
     [LoggerMessage(
         EventId = 3048,
         Level = LogLevel.Information,
-        Message = "Avito: объявление {ListingId} старше заданной даты — пропускаем"
+        Message = "Avito: объявление {ListingId} старше заданной даты - пропускаем"
     )]
     public static partial void ListingExcludedByDate(ILogger logger, string listingId);
 
     [LoggerMessage(
         EventId = 3049,
         Level = LogLevel.Information,
-        Message = "Avito: объявление {ListingId} вне региона поиска ({Location}) — пропускаем"
+        Message = "Avito: объявление {ListingId} вне региона поиска ({Location}) - пропускаем"
     )]
     public static partial void ListingExcludedWrongLocation(
         ILogger logger,
@@ -479,28 +479,28 @@ internal static partial class AvitoLog
     [LoggerMessage(
         EventId = 3053,
         Level = LogLevel.Warning,
-        Message = "Avito: выдача не загрузилась после формы — переход по URL поиска"
+        Message = "Avito: выдача не загрузилась после формы - переход по URL поиска"
     )]
     public static partial void SearchFallbackToUrl(ILogger logger);
 
     [LoggerMessage(
         EventId = 3059,
         Level = LogLevel.Information,
-        Message = "Avito: на странице блок «другие города/категории» — берём {Count} объявлений выше него"
+        Message = "Avito: на странице блок «другие города/категории» - берём {Count} объявлений выше него"
     )]
     public static partial void SearchCardsAboveOtherCitiesBanner(ILogger logger, int count);
 
     [LoggerMessage(
         EventId = 3060,
         Level = LogLevel.Information,
-        Message = "Avito: дальше страницы поиска не открываем — на текущей есть блок «другие города/категории»"
+        Message = "Avito: дальше страницы поиска не открываем - на текущей есть блок «другие города/категории»"
     )]
     public static partial void SkipNextSearchPageDueToOtherCitiesBanner(ILogger logger);
 
     [LoggerMessage(
         EventId = 3061,
         Level = LogLevel.Information,
-        Message = "Avito: объявление {ListingId} отсеяно по цене/исключениям («{Title}») — пропускаем"
+        Message = "Avito: объявление {ListingId} отсеяно по цене/исключениям («{Title}») - пропускаем"
     )]
     public static partial void ListingExcludedByFilters(
         ILogger logger,

@@ -55,7 +55,7 @@ public sealed partial class AgentRestartCoordinator(
         if (!patched)
         {
             _logger.LogError(
-                "Не удалось записать Headless=false в appsettings.json — перезапуск отменён."
+                "Не удалось записать Headless=false в appsettings.json - перезапуск отменён."
             );
             Interlocked.Exchange(ref _restartStarted, 0);
             return false;
@@ -112,7 +112,7 @@ public sealed partial class AgentRestartCoordinator(
                 var updated = HeadlessTrueRegex().Replace(text, "$1false");
                 if (string.Equals(text, updated, StringComparison.Ordinal))
                 {
-                    // Уже false или ключа нет — считаем ок, если Headless уже false в файле.
+                    // Уже false или ключа нет - считаем ок, если Headless уже false в файле.
                     if (HeadlessFalseRegex().IsMatch(text))
                     {
                         any = true;

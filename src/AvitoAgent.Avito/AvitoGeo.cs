@@ -66,7 +66,7 @@ internal static partial class AvitoGeo
 
     /// <summary>
     /// Относится ли объявление к региону/городу текущего поиска.
-    /// null — не удалось определить (не отбрасываем).
+    /// null - не удалось определить (не отбрасываем).
     /// </summary>
     public static bool? TryBelongsToSearchLocation(
         string? listingUrl,
@@ -101,7 +101,7 @@ internal static partial class AvitoGeo
             return false;
         }
 
-        // Поиск по конкретному городу — не берём другие города той же области.
+        // Поиск по конкретному городу - не берём другие города той же области.
         if (!string.IsNullOrEmpty(searchPlace.City))
         {
             if (!string.IsNullOrWhiteSpace(listingCity))
@@ -512,7 +512,7 @@ internal static partial class AvitoGeo
     public static string FormatSlugCatalog()
     {
         var builder = new System.Text.StringBuilder();
-        builder.AppendLine("rossiya — Россия");
+        builder.AppendLine("rossiya - Россия");
         builder.AppendLine();
 
         foreach (
@@ -533,7 +533,7 @@ internal static partial class AvitoGeo
                     : pair.Value.City;
                 builder.Append(" ");
                 builder.Append(pair.Key);
-                builder.Append(" — ");
+                builder.Append(" - ");
                 builder.AppendLine(name);
             }
 

@@ -46,7 +46,7 @@ public sealed class TelegramNotificationService(
         CancellationToken cancellationToken = default
     )
     {
-        // analysis не в тексте: отбор по соответствию — в AgentWorker до вызова.
+        // analysis не в тексте: отбор по соответствию - в AgentWorker до вызова.
         _ = analysis;
 
         if (!_options.Enabled)
@@ -313,7 +313,7 @@ public sealed class TelegramNotificationService(
 
     private Task<IReadOnlyList<ListingPhoto>> ResolvePhotosAsync(Listing listing)
     {
-        // Исходные байты без сжатия — в Telegram уходят как document (не sendPhoto).
+        // Исходные байты без сжатия - в Telegram уходят как document (не sendPhoto).
         var fromBytes = listing
             .Images.Where(photo =>
                 photo.Content.Length > 0 && photo.Content.Length <= MaxDocumentBytes
@@ -493,7 +493,7 @@ public sealed class TelegramNotificationService(
         form.Add(content, name, fileName);
     }
 
-    private static string ResolveContentType(string contentType)
+    internal static string ResolveContentType(string contentType)
     {
         if (string.IsNullOrWhiteSpace(contentType))
         {
@@ -506,7 +506,7 @@ public sealed class TelegramNotificationService(
             : "image/jpeg";
     }
 
-    private static string ResolveFileName(ListingPhoto photo, string stem)
+    internal static string ResolveFileName(ListingPhoto photo, string stem)
     {
         var type = ResolveContentType(photo.ContentType);
         var ext = type switch
@@ -562,7 +562,7 @@ public sealed class TelegramNotificationService(
         return null;
     }
 
-    private static string BuildMessage(Listing listing)
+    internal static string BuildMessage(Listing listing)
     {
         var builder = new StringBuilder();
         builder.AppendLine(listing.Title.Trim());
@@ -584,10 +584,10 @@ public sealed class TelegramNotificationService(
         return builder.ToString().Trim();
     }
 
-    private static string FormatAddress(Listing listing) =>
+    internal static string FormatAddress(Listing listing) =>
         string.IsNullOrWhiteSpace(listing.Location) ? "не указан" : listing.Location.Trim();
 
-    private static string FormatPrice(Listing listing)
+    internal static string FormatPrice(Listing listing)
     {
         if (!listing.Price.HasValue)
         {
@@ -602,7 +602,7 @@ public sealed class TelegramNotificationService(
         return $"{amount} {currency}";
     }
 
-    private static string TrimDescription(string description)
+    internal static string TrimDescription(string description)
     {
         var text = description.ReplaceLineEndings("\n").Trim();
         const int max = 1500;
@@ -610,10 +610,10 @@ public sealed class TelegramNotificationService(
     }
 
     /// <summary>
-    /// Лимит caption в Telegram Bot API — 1024 символа.
+    /// Лимит caption в Telegram Bot API - 1024 символа.
     /// Ссылка на объявление всегда в конце; обрезается только текст перед ней.
     /// </summary>
-    private static string TruncateForCaption(string text, string? listingUrl = null)
+    internal static string TruncateForCaption(string text, string? listingUrl = null)
     {
         var trimmed = text.Trim();
         var url = listingUrl?.Trim();
@@ -622,7 +622,7 @@ public sealed class TelegramNotificationService(
             return TruncateToLimit(trimmed, CaptionLimit);
         }
 
-        // Убираем URL из хвоста сообщения — добавим его после обрезки.
+        // Убираем URL из хвоста сообщения - добавим его после обрезки.
         var body = trimmed;
         if (body.EndsWith(url, StringComparison.Ordinal))
         {
@@ -644,7 +644,7 @@ public sealed class TelegramNotificationService(
         return TruncateToLimit(body, budget) + suffix;
     }
 
-    private static string TruncateToLimit(string text, int limit)
+    internal static string TruncateToLimit(string text, int limit)
     {
         if (text.Length <= limit)
         {
@@ -659,7 +659,7 @@ public sealed class TelegramNotificationService(
         return text[..(limit - 1)].TrimEnd() + "…";
     }
 
-    private static string[] SplitText(string text, int limit)
+    internal static string[] SplitText(string text, int limit)
     {
         if (text.Length <= limit)
         {
@@ -694,7 +694,7 @@ public sealed class TelegramNotificationService(
             && Interlocked.Exchange(ref _socks5Logged, 1) == 0
         )
         {
-            // без отдельного лог-метода — избегаем шума при каждой отправке
+            // без отдельного лог-метода - избегаем шума при каждой отправке
         }
     }
 

@@ -148,7 +148,7 @@ internal static partial class LlmResponseParser
 
 
 
-        // Незакрытый <think>… — выкидываем до конца блока или весь хвост после открывающего тега.
+        // Незакрытый <think>… - выкидываем до конца блока или весь хвост после открывающего тега.
 
         var openThink = text.IndexOf("<think>", StringComparison.OrdinalIgnoreCase);
 

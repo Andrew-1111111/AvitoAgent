@@ -8,5 +8,6 @@
   <Project Path="src/AvitoAgent.Shared/AvitoAgent.Shared.csproj" Id="1f2f579e-ecbc-4512-bf06-ebc46eff16c9" />
   <Project Path="src/AvitoAgent.Storage/AvitoAgent.Storage.csproj" Id="766db72d-a850-4956-b6cf-159266e12ac7" />
   <Project Path="src/AvitoAgent.Telegram/AvitoAgent.Telegram.csproj" Id="f4b2d0c3-c705-40ee-b834-a41256c045f8" />
+  <Project Path="src/AvitoAgent.Tests/AvitoAgent.Tests.csproj" />
   <Project Path="src/AvitoAgent.Worker/AvitoAgent.Worker.csproj" Id="1da4cdfb-9015-4491-9e22-b685db017b19" />
 </Solution>

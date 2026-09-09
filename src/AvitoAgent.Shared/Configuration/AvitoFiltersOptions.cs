@@ -5,7 +5,7 @@ public sealed class AvitoFiltersOptions
     public const string SectionName = "Avito:Filters";
 
     /// <summary>
-    /// Регионы в URL Avito. Несколько — массив или строка через запятую.
+    /// Регионы в URL Avito. Несколько - массив или строка через запятую.
     /// Каждый регион обходится отдельно; MaxResults действует на регион.
     /// </summary>
     public string[] LocationSlug { get; set; } = ["rossiya"];
@@ -51,7 +51,7 @@ public sealed class AvitoFiltersOptions
     public string[] SortValues { get; set; } = [.. AvitoSort.AllowedValues];
 
     /// <summary>
-    /// true — искать и парсить только объявления с Авито Доставкой.
+    /// true - искать и парсить только объявления с Авито Доставкой.
     /// </summary>
     public bool DeliveryOnly { get; set; }
 
@@ -77,7 +77,7 @@ public sealed class AvitoFiltersOptions
     public string[] SellerTypeValues { get; set; } = [.. AvitoSellerType.AllowedValues];
 
     /// <summary>
-    /// true — брать только объявления новее момента старта поиска (кнопка «Старт» / запуск приложения).
+    /// true - брать только объявления новее момента старта поиска (кнопка «Старт» / запуск приложения).
     /// </summary>
     public bool FromCurrentDateTime { get; set; }
 }

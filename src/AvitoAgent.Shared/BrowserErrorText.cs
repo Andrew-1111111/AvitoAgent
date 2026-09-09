@@ -81,7 +81,7 @@ public static class BrowserErrorText
             || message.Contains("user data directory is already in use", StringComparison.OrdinalIgnoreCase)
         )
         {
-            return "профиль Chrome уже занят — закройте окна Chrome агента и запустите снова";
+            return "профиль Chrome уже занят - закройте окна Chrome агента и запустите снова";
         }
 
         if (LooksClosed(message) || LooksClosed(exception.GetType().Name))

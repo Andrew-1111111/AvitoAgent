@@ -9,7 +9,7 @@ internal static partial class QwenThinking
 
     /// <summary>
     /// Prefill в точности как в chat template Qwen3.5 при enable_thinking=false.
-    /// API LM Studio часто игнорирует флаги — закрытый think в assistant пропускает reasoning.
+    /// API LM Studio часто игнорирует флаги - закрытый think в assistant пропускает reasoning.
     /// </summary>
     public const string Prefill = "<think>\n\n</think>\n\n";
 

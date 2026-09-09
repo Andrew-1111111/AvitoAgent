@@ -7,7 +7,7 @@ public interface IAvitoAuthService
     string StorageStatePath { get; }
 
     /// <summary>
-    /// true — сессия подтверждена. false — нужен ручной вход, ожидание не блокирует цикл.
+    /// true - сессия подтверждена. false - нужен ручной вход, ожидание не блокирует цикл.
     /// </summary>
     Task<bool> EnsureAuthenticatedAsync(
         IBrowserSession session,

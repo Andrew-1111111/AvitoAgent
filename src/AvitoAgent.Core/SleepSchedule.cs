@@ -7,7 +7,7 @@ namespace AvitoAgent.Core;
 public static class SleepSchedule
 {
     /// <summary>
-    /// true — сейчас сон; <paramref name="localUntil"/> — локальный момент окончания окна.
+    /// true - сейчас сон; <paramref name="localUntil"/> - локальный момент окончания окна.
     /// </summary>
     public static bool TryGetActiveUntil(
         int? fromHour,

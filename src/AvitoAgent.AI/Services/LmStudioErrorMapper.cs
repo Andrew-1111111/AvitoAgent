@@ -28,7 +28,7 @@ internal static partial class LmStudioErrorMapper
             $"В LM Studio не найдена модель «{requested}». "
                 + (
                     available.Count == 0
-                        ? "Загруженных моделей нет — загрузите нужную в LM Studio."
+                        ? "Загруженных моделей нет - загрузите нужную в LM Studio."
                         : $"Сейчас загружено: {string.Join(", ", available)}. Укажите одну из них в настройке LmStudio:Model."
                 )
         );
@@ -38,7 +38,7 @@ internal static partial class LmStudioErrorMapper
         Exception? inner = null
     ) =>
         new(
-            "LM Studio не отвечает — возможно, модель ещё загружается в память. "
+            "LM Studio не отвечает - возможно, модель ещё загружается в память. "
                 + $"Дождитесь статуса Loaded и повторите ({TrimUrl(baseUrl)}).",
             inner
         );
@@ -188,7 +188,7 @@ internal static partial class LmStudioErrorMapper
             }
         }
 
-        // ResponseEnded обрабатывается в TryMapOrDescribe — здесь только «сервер недоступен».
+        // ResponseEnded обрабатывается в TryMapOrDescribe - здесь только «сервер недоступен».
         if (IsPrematureResponse(exception))
         {
             return null;
@@ -221,7 +221,7 @@ internal static partial class LmStudioErrorMapper
     }
 
     /// <summary>
-    /// Маппинг для анализа: обрыв ответа — читаемая ошибка объявления, не останов цикла.
+    /// Маппинг для анализа: обрыв ответа - читаемая ошибка объявления, не останов цикла.
     /// </summary>
     public static Exception? TryMapAnalysisError(Exception exception, string baseUrl)
     {

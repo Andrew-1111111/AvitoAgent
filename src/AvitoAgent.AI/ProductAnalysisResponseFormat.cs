@@ -5,7 +5,7 @@ namespace AvitoAgent.AI;
 
 internal static class ProductAnalysisResponseFormat
 {
-    // LM Studio: type-массивы и strict часто ломают json_schema — упрощённая схема.
+    // LM Studio: type-массивы и strict часто ломают json_schema - упрощённая схема.
     private static readonly JsonElement Schema = JsonDocument
         .Parse(
             """

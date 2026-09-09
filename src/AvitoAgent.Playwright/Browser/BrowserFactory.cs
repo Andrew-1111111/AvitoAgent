@@ -152,7 +152,7 @@ internal static class BrowserFactory
         }
 
         // Перехватываем только трекеры. Route на "**/*" прогонял бы весь трафик Avito
-        // через сеть Playwright (иной порядок заголовков, лишний CDP) — это детектится антиботом.
+        // через сеть Playwright (иной порядок заголовков, лишний CDP) - это детектится антиботом.
         await browserContext.RouteAsync(
             TrackerBlocklist.ShouldBlock,
             route => route.AbortAsync()

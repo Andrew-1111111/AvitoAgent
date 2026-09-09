@@ -7,12 +7,12 @@ public sealed class WorkerOptions
     public int PollingIntervalMinutes { get; set; } = 5;
 
     /// <summary>
-    /// Час начала сна агента (0–23). null — без окна сна.
+    /// Час начала сна агента (0-23). null - без окна сна.
     /// </summary>
     public int? SleepFromHour { get; set; }
 
     /// <summary>
-    /// Час окончания сна (0–23). Можно через полночь, например From=23, To=7.
+    /// Час окончания сна (0-23). Можно через полночь, например From=23, To=7.
     /// </summary>
     public int? SleepToHour { get; set; }
 
@@ -26,12 +26,12 @@ public sealed class WorkerOptions
     public string[] ExcludedKeywords { get; set; } = [];
 
     /// <summary>
-    /// Минимальная цена, ₽. 0 — без нижней границы. Диапазон: 0…int.MaxValue.
+    /// Минимальная цена, ₽. 0 - без нижней границы. Диапазон: 0…int.MaxValue.
     /// </summary>
     public int MinPrice { get; set; }
 
     /// <summary>
-    /// Максимальная цена, ₽. 0 — без верхней границы. Диапазон: 0…int.MaxValue.
+    /// Максимальная цена, ₽. 0 - без верхней границы. Диапазон: 0…int.MaxValue.
     /// </summary>
     public int MaxPrice { get; set; }
 
@@ -42,7 +42,7 @@ public sealed class WorkerOptions
     public int MaxResults { get; set; } = 30;
 
     /// <summary>
-    /// Минимальный score соответствия поисковому запросу (0–100) для отправки в Telegram.
+    /// Минимальный score соответствия поисковому запросу (0-100) для отправки в Telegram.
     /// </summary>
     public int MinAuthenticityScore { get; set; } = 60;
 }

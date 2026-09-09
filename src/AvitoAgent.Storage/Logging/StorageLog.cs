@@ -45,7 +45,7 @@ internal static partial class StorageLog
     [LoggerMessage(
         EventId = 1007,
         Level = LogLevel.Information,
-        Message = "ExportListingPhotos включён, но у объявления {ListingId} нет скачанных фото — папку не создаём"
+        Message = "ExportListingPhotos включён, но у объявления {ListingId} нет скачанных фото - папку не создаём"
     )]
     public static partial void ImagesExportSkipped(ILogger logger, string listingId);
 

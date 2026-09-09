@@ -23,7 +23,7 @@ internal static class AvitoUrlBuilder
         var location = ResolveLocation(options, criteria);
         var baseUrl = options.BaseUrl.TrimEnd('/');
 
-        // Запрос (q) в URL не ставим — только печать в поле поиска и кнопка «Найти».
+        // Запрос (q) в URL не ставим - только печать в поле поиска и кнопка «Найти».
         var url = $"{baseUrl}/{location}";
         var query = new List<string>();
 
@@ -88,7 +88,7 @@ internal static class AvitoUrlBuilder
 
     /// <summary>
     /// Дописывает в текущий URL выдачи цену, состояние, доставку, продавца и localPriority,
-    /// не трогая q (запрос только через форму) и path. Сортировка — кликом по меню.
+    /// не трогая q (запрос только через форму) и path. Сортировка - кликом по меню.
     /// </summary>
     public static bool TryMergeCriteriaFilters(
         string currentUrl,
@@ -154,7 +154,7 @@ internal static class AvitoUrlBuilder
 
     /// <summary>
     /// Совпадают ли в URL фильтры цены / состояния / доставки / продавца с критериями.
-    /// Путь категории Avito может отличаться от BuildSearchUrl — path не сравниваем.
+    /// Путь категории Avito может отличаться от BuildSearchUrl - path не сравниваем.
     /// </summary>
     public static bool HasCriteriaFilters(string currentUrl, SearchCriteria criteria)
     {

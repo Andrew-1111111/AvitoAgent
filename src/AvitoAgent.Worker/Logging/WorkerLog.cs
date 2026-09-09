@@ -138,7 +138,7 @@ internal static partial class WorkerLog
     [LoggerMessage(
         EventId = 6015,
         Level = LogLevel.Information,
-        Message = "LM Studio отключена — объявления уходят в Telegram без AI-анализа"
+        Message = "LM Studio отключена - объявления уходят в Telegram без AI-анализа"
     )]
     public static partial void LmStudioDisabled(ILogger logger);
 

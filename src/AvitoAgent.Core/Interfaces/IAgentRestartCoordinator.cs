@@ -6,12 +6,12 @@ namespace AvitoAgent.Core.Interfaces;
 public interface IAgentRestartCoordinator
 {
     /// <summary>
-    /// true — браузер сейчас без окна (Headless).
+    /// true - браузер сейчас без окна (Headless).
     /// </summary>
     bool IsBrowserHeadless { get; }
 
     /// <summary>
-    /// true — текущий процесс завершается ради перезапуска (например, выход из headless).
+    /// true - текущий процесс завершается ради перезапуска (например, выход из headless).
     /// </summary>
     bool IsRestarting { get; }
 

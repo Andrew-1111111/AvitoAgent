@@ -33,12 +33,12 @@ public sealed record ParseSettings
     public int PollingIntervalMinutes { get; init; } = 5;
 
     /// <summary>
-    /// Час начала сна (0–23). null — сон выключен.
+    /// Час начала сна (0-23). null - сон выключен.
     /// </summary>
     public int? SleepFromHour { get; init; }
 
     /// <summary>
-    /// Час окончания сна (0–23). Можно меньше From (через полночь).
+    /// Час окончания сна (0-23). Можно меньше From (через полночь).
     /// </summary>
     public int? SleepToHour { get; init; }
 }

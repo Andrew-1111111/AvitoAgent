@@ -44,4 +44,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvitoAgent.Tests" />
+  </ItemGroup>
 </Project>

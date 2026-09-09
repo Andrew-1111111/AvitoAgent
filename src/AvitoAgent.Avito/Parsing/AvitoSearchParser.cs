@@ -9,7 +9,7 @@ internal static partial class AvitoSearchParser
 {
     /// <summary>
     /// Разделитель выдачи: «в других городах» / «в других категориях» / «смотрите также».
-    /// null — нет; -1 — баннер над всей выдачей; иначе Y разделителя (брать карточки строго выше).
+    /// null - нет; -1 - баннер над всей выдачей; иначе Y разделителя (брать карточки строго выше).
     /// </summary>
     private const string FindSerpCutoffBannerTopScript = """
         () => {

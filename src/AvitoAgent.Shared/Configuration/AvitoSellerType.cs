@@ -78,7 +78,7 @@ public static class AvitoSellerType
         };
 
     /// <summary>
-    /// Query-параметр <c>user</c>: 1 — частные, 2 — компании. Для «Все» параметр не задаём.
+    /// Query-параметр <c>user</c>: 1 - частные, 2 - компании. Для «Все» параметр не задаём.
     /// </summary>
     public static string? UrlValue(AvitoSellerTypeMode mode) =>
         mode switch

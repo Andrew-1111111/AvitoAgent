@@ -8,7 +8,7 @@ public sealed class NetworkOptions
     public const string SectionName = "Network";
 
     /// <summary>
-    /// IP или имя адаптера (Ethernet, Wi-Fi, Ethernet 2). Пусто — интерфейс по умолчанию ОС.
+    /// IP или имя адаптера (Ethernet, Wi-Fi, Ethernet 2). Пусто - интерфейс по умолчанию ОС.
     /// </summary>
     public string Interface { get; set; } = string.Empty;
 }
