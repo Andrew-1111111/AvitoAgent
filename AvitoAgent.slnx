@@ -1,0 +1,12 @@
+<Solution>
+  <Project Path="src/AvitoAgent.AI/AvitoAgent.AI.csproj" Id="efaeeda4-e2ab-4ccd-94ff-67cf16c942ca" />
+  <Project Path="src/AvitoAgent.App/AvitoAgent.App.csproj" Id="3d08dba3-7985-48f2-a28a-18de5b00ad66" />
+  <Project Path="src/AvitoAgent.Avito/AvitoAgent.Avito.csproj" Id="3a29b35a-90ec-4917-abdb-c2b84c9b80bd" />
+  <Project Path="src/AvitoAgent.Core/AvitoAgent.Core.csproj" Id="3cb8fca1-fa5d-49f5-8672-84519ee2a768" />
+  <Project Path="src/AvitoAgent.Infrastructure/AvitoAgent.Infrastructure.csproj" Id="fe7c48e0-596c-4c0f-996f-61cf3e5ccb2f" />
+  <Project Path="src/AvitoAgent.Playwright/AvitoAgent.Playwright.csproj" Id="0bb30a94-1239-4442-84fd-21e55a1eb87b" />
+  <Project Path="src/AvitoAgent.Shared/AvitoAgent.Shared.csproj" Id="1f2f579e-ecbc-4512-bf06-ebc46eff16c9" />
+  <Project Path="src/AvitoAgent.Storage/AvitoAgent.Storage.csproj" Id="766db72d-a850-4956-b6cf-159266e12ac7" />
+  <Project Path="src/AvitoAgent.Telegram/AvitoAgent.Telegram.csproj" Id="f4b2d0c3-c705-40ee-b834-a41256c045f8" />
+  <Project Path="src/AvitoAgent.Worker/AvitoAgent.Worker.csproj" Id="1da4cdfb-9015-4491-9e22-b685db017b19" />
+</Solution>

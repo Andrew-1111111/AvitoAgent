@@ -1,0 +1,74 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: ${{ matrix.name }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Framework-dependent
+            id: fdd
+            self_contained: "false"
+            artifact: AvitoAgent-win-x64-framework-dependent
+          - name: Self-contained
+            id: scd
+            self_contained: "true"
+            artifact: AvitoAgent-win-x64-self-contained
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore src/AvitoAgent.App/AvitoAgent.App.csproj
+
+      - name: Build
+        run: >
+          dotnet build src/AvitoAgent.App/AvitoAgent.App.csproj
+          -c Release --no-restore
+
+      - name: Prepare publish settings
+        shell: pwsh
+        run: |
+          $appDir = "src/AvitoAgent.App"
+          Copy-Item "$appDir/appsettings.example.json" "$appDir/appsettings.json" -Force
+
+      - name: Publish
+        run: >
+          dotnet publish src/AvitoAgent.App/AvitoAgent.App.csproj
+          -c Release
+          -r win-x64
+          --self-contained ${{ matrix.self_contained }}
+          -o publish/${{ matrix.id }}
+
+      - name: Bundle prompts and example settings
+        shell: pwsh
+        run: |
+          $out = "publish/${{ matrix.id }}"
+          Copy-Item -Recurse prompts "$out/prompts" -Force
+          Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.json" -Force
+          Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.example.json" -Force
+          Copy-Item README.md "$out/README.md" -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: publish/${{ matrix.id }}
+          if-no-files-found: error
+          retention-days: 14
