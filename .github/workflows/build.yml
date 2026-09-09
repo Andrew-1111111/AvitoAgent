@@ -64,6 +64,7 @@ jobs:
           Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.json" -Force
           Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.example.json" -Force
           Copy-Item README.md "$out/README.md" -Force
+          Copy-Item README.en.md "$out/README.en.md" -Force
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
