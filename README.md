@@ -76,6 +76,15 @@ dotnet test src\AvitoAgent.Tests\AvitoAgent.Tests.csproj -c Release
 
 В артефактах вместо секретов лежит `appsettings.example.json` (как `appsettings.json`). Перед запуском скачанной сборки заполните токены.
 
+### Релиз
+
+Файл `.github/workflows/release.yml` срабатывает на git-тег `v*` (например `v1.0.0`): прогоняет тесты, собирает оба zip и публикует [GitHub Release](../../releases) с ними.
+
+```powershell
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Структура репозитория
 
 ```
@@ -106,5 +115,5 @@ prompts/authenticity.txt      промпт для анализа объявле�
 - **SkiaSharp** - подготовка фотографий для модели
 - **Serilog** - консоль и файлы логов
 - **Polly** (`Microsoft.Extensions.Http.Resilience`) - повторы HTTP-запросов
-- **GitHub Actions** - unit-тесты, сборка win-x64 с зависимостью от .NET и автономная
+- **GitHub Actions** - unit-тесты, сборка win-x64, релиз по тегу `v*`
 - **xUnit** - unit-тесты в `src/AvitoAgent.Tests`

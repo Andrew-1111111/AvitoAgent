@@ -76,6 +76,15 @@ Unit coverage (no browser): Avito filters and URLs, geo catalog, date/image pars
 
 Artifacts ship `appsettings.example.json` as `appsettings.json` (no secrets). Fill in tokens before running a downloaded build.
 
+### Release
+
+`.github/workflows/release.yml` runs on git tags matching `v*` (for example `v1.0.0`): tests, builds both zips, and publishes a [GitHub Release](../../releases) with them.
+
+```powershell
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Repository layout
 
 ```
@@ -106,5 +115,5 @@ Initial values come from the `Worker` and `Avito:Filters` sections in `appsettin
 - **SkiaSharp** - image preparation for the model
 - **Serilog** - console and file logging
 - **Polly** (`Microsoft.Extensions.Http.Resilience`) - HTTP retries
-- **GitHub Actions** - unit tests, win-x64 framework-dependent and self-contained builds
+- **GitHub Actions** - unit tests, win-x64 builds, release on `v*` tags
 - **xUnit** - unit tests in `src/AvitoAgent.Tests`

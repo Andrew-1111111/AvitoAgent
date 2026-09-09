@@ -1,0 +1,118 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Test
+        run: >
+          dotnet test src/AvitoAgent.Tests/AvitoAgent.Tests.csproj
+          -c Release
+          --verbosity minimal
+
+  publish:
+    name: ${{ matrix.name }}
+    needs: test
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Framework-dependent
+            id: fdd
+            self_contained: "false"
+            artifact: AvitoAgent-win-x64-framework-dependent
+          - name: Self-contained
+            id: scd
+            self_contained: "true"
+            artifact: AvitoAgent-win-x64-self-contained
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore src/AvitoAgent.App/AvitoAgent.App.csproj
+
+      - name: Build
+        run: >
+          dotnet build src/AvitoAgent.App/AvitoAgent.App.csproj
+          -c Release --no-restore
+
+      - name: Prepare publish settings
+        shell: pwsh
+        run: |
+          $appDir = "src/AvitoAgent.App"
+          Copy-Item "$appDir/appsettings.example.json" "$appDir/appsettings.json" -Force
+
+      - name: Publish
+        run: >
+          dotnet publish src/AvitoAgent.App/AvitoAgent.App.csproj
+          -c Release
+          -r win-x64
+          --self-contained ${{ matrix.self_contained }}
+          -o publish/${{ matrix.id }}
+
+      - name: Bundle prompts and example settings
+        shell: pwsh
+        run: |
+          $out = "publish/${{ matrix.id }}"
+          Copy-Item -Recurse prompts "$out/prompts" -Force
+          Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.json" -Force
+          Copy-Item src/AvitoAgent.App/appsettings.example.json "$out/appsettings.example.json" -Force
+          Copy-Item README.md "$out/README.md" -Force
+          Copy-Item README.en.md "$out/README.en.md" -Force
+
+      - name: Zip
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "publish/${{ matrix.id }}/*" `
+            -DestinationPath "${{ matrix.artifact }}.zip" -Force
+
+      - name: Upload zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    name: GitHub Release
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download zips
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
